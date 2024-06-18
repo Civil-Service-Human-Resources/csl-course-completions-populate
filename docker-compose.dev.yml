@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  script:
+      build: .
+      volumes:
+        - ./app:/app
+      working_dir: /app
+      command: tail -f
+
+  postgres:
+    build: ./postgres/.
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root-pw
+      POSTGRES_DB: reporting
+    ports:
+      - 5432:5432
+
+  mysql:
+    build: ./mysql/.
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: csrs

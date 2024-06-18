@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  script:
+    build: .
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: tail -f
+    env_file:
+      - config.env
