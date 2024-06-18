@@ -47,7 +47,7 @@ CSRS_DB_DATABASE=db
 Build the Docker container:
 
 ```sh
-docker-compose build --no-cache script
+docker build -t course-completions-populate .
 ```
 
 Optionally, you can run the scripts without a Docker container.
@@ -57,7 +57,7 @@ Optionally, you can run the scripts without a Docker container.
 To start and enter the Script container, run this command:
 
 ```sh
-docker-compose up -d script && docker-compose exec script bash
+docker run -it --rm -v $PWD/app:/app -w /app --env-file config.env course-completions-populate bash
 ```
 
 Either within the Docker container or standalone, the prefix to run all the scripts is:
